@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AdditionDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Desks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeskName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="UnitPrice" Type="money" />
+          <Property Name="UnitsInStock" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductsOfDesks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeskId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="WaiterId" Type="int" />
+          <Property Name="ProcessDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Waiters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Products_CategoryId">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsOfDesks_DeskId">
+          <End Role="Desks" Type="Self.Desks" Multiplicity="0..1" />
+          <End Role="ProductsOfDesks" Type="Self.ProductsOfDesks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Desks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOfDesks">
+              <PropertyRef Name="DeskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsOfDesks_ProductId">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="ProductsOfDesks" Type="Self.ProductsOfDesks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOfDesks">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsOfDesks_WaiterId">
+          <End Role="Waiters" Type="Self.Waiters" Multiplicity="0..1" />
+          <End Role="ProductsOfDesks" Type="Self.ProductsOfDesks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Waiters">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOfDesks">
+              <PropertyRef Name="WaiterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdditionDatabaseModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Desks" EntityType="Self.Desks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductsOfDesks" EntityType="Self.ProductsOfDesks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Waiters" EntityType="Self.Waiters" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Products_CategoryId" Association="Self.FK_Products_CategoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsOfDesks_DeskId" Association="Self.FK_ProductsOfDesks_DeskId">
+            <End Role="Desks" EntitySet="Desks" />
+            <End Role="ProductsOfDesks" EntitySet="ProductsOfDesks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsOfDesks_ProductId" Association="Self.FK_ProductsOfDesks_ProductId">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductsOfDesks" EntitySet="ProductsOfDesks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsOfDesks_WaiterId" Association="Self.FK_ProductsOfDesks_WaiterId">
+            <End Role="Waiters" EntitySet="Waiters" />
+            <End Role="ProductsOfDesks" EntitySet="ProductsOfDesks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AdditionDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_CategoryId" FromRole="Categories" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Desk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeskName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProductsOfDesks" Relationship="AdditionDatabaseModel.FK_ProductsOfDesks_DeskId" FromRole="Desk" ToRole="ProductsOfDesk" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="UnitsInStock" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Products_CategoryId" FromRole="Products" ToRole="Categories" />
+          <NavigationProperty Name="ProductsOfDesks" Relationship="AdditionDatabaseModel.FK_ProductsOfDesks_ProductId" FromRole="Product" ToRole="ProductsOfDesk" />
+        </EntityType>
+        <EntityType Name="Waiter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProductsOfDesks" Relationship="AdditionDatabaseModel.FK_ProductsOfDesks_WaiterId" FromRole="Waiter" ToRole="ProductsOfDesk" />
+        </EntityType>
+        <Association Name="FK_Products_CategoryId">
+          <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AdditionDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Desks" EntityType="Self.Desk" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Waiters" EntityType="Self.Waiter" />
+          <AssociationSet Name="FK_Products_CategoryId" Association="Self.FK_Products_CategoryId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="ProductsOfDesks" EntityType="AdditionDatabaseModel.ProductsOfDesk" />
+          <AssociationSet Name="FK_ProductsOfDesks_DeskId" Association="AdditionDatabaseModel.FK_ProductsOfDesks_DeskId">
+            <End Role="Desk" EntitySet="Desks" />
+            <End Role="ProductsOfDesk" EntitySet="ProductsOfDesks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsOfDesks_ProductId" Association="AdditionDatabaseModel.FK_ProductsOfDesks_ProductId">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductsOfDesk" EntitySet="ProductsOfDesks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductsOfDesks_WaiterId" Association="AdditionDatabaseModel.FK_ProductsOfDesks_WaiterId">
+            <End Role="Waiter" EntitySet="Waiters" />
+            <End Role="ProductsOfDesk" EntitySet="ProductsOfDesks" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ProductsOfDesk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeskId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="WaiterId" Type="Int32" />
+          <Property Name="ProcessDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Desk" Relationship="AdditionDatabaseModel.FK_ProductsOfDesks_DeskId" FromRole="ProductsOfDesk" ToRole="Desk" />
+          <NavigationProperty Name="Product" Relationship="AdditionDatabaseModel.FK_ProductsOfDesks_ProductId" FromRole="ProductsOfDesk" ToRole="Product" />
+          <NavigationProperty Name="Waiter" Relationship="AdditionDatabaseModel.FK_ProductsOfDesks_WaiterId" FromRole="ProductsOfDesk" ToRole="Waiter" />
+        </EntityType>
+        <Association Name="FK_ProductsOfDesks_DeskId">
+          <End Type="AdditionDatabaseModel.Desk" Role="Desk" Multiplicity="0..1" />
+          <End Type="AdditionDatabaseModel.ProductsOfDesk" Role="ProductsOfDesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Desk">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOfDesk">
+              <PropertyRef Name="DeskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsOfDesks_ProductId">
+          <End Type="AdditionDatabaseModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="AdditionDatabaseModel.ProductsOfDesk" Role="ProductsOfDesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOfDesk">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductsOfDesks_WaiterId">
+          <End Type="AdditionDatabaseModel.Waiter" Role="Waiter" Multiplicity="0..1" />
+          <End Type="AdditionDatabaseModel.ProductsOfDesk" Role="ProductsOfDesk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Waiter">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductsOfDesk">
+              <PropertyRef Name="WaiterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AdditionDatabaseModelStoreContainer" CdmEntityContainer="AdditionDatabaseEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="AdditionDatabaseModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Desks">
+            <EntityTypeMapping TypeName="AdditionDatabaseModel.Desk">
+              <MappingFragment StoreEntitySet="Desks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DeskName" ColumnName="DeskName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="AdditionDatabaseModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="UnitsInStock" ColumnName="UnitsInStock" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Waiters">
+            <EntityTypeMapping TypeName="AdditionDatabaseModel.Waiter">
+              <MappingFragment StoreEntitySet="Waiters">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductsOfDesks">
+            <EntityTypeMapping TypeName="AdditionDatabaseModel.ProductsOfDesk">
+              <MappingFragment StoreEntitySet="ProductsOfDesks">
+                <ScalarProperty Name="ProcessDateTime" ColumnName="ProcessDateTime" />
+                <ScalarProperty Name="WaiterId" ColumnName="WaiterId" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="DeskId" ColumnName="DeskId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

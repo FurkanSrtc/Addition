@@ -1,0 +1,12 @@
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\bin\Debug\_PrsentationLayer.exe.config
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\bin\Debug\_PrsentationLayer.exe
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\bin\Debug\_PrsentationLayer.pdb
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\obj\Debug\_PrsentationLayer.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\obj\Debug\_PrsentationLayer.Properties.Resources.resources
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\obj\Debug\_PrsentationLayer.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\obj\Debug\_PrsentationLayer.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\obj\Debug\_PrsentationLayer.exe
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\obj\Debug\_PrsentationLayer.pdb
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\obj\Debug\_PrsentationLayer.Forms.LoginForm.resources
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\obj\Debug\_PrsentationLayer.Forms.MainForm.resources
+C:\Users\user\Desktop\AdditionSolution\_PrsentationLayer\obj\Debug\_PrsentationLayer.Forms.DesksForm.resources

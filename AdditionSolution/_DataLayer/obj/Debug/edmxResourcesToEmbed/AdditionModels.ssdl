@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AdditionDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Desks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeskName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="varchar" MaxLength="50" />
+    <Property Name="UnitPrice" Type="money" />
+    <Property Name="UnitsInStock" Type="int" />
+    <Property Name="CategoryId" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductsOfDesks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeskId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="WaiterId" Type="int" />
+    <Property Name="ProcessDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Waiters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Products_CategoryId">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsOfDesks_DeskId">
+    <End Role="Desks" Type="Self.Desks" Multiplicity="0..1" />
+    <End Role="ProductsOfDesks" Type="Self.ProductsOfDesks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Desks">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductsOfDesks">
+        <PropertyRef Name="DeskId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsOfDesks_ProductId">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="ProductsOfDesks" Type="Self.ProductsOfDesks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductsOfDesks">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsOfDesks_WaiterId">
+    <End Role="Waiters" Type="Self.Waiters" Multiplicity="0..1" />
+    <End Role="ProductsOfDesks" Type="Self.ProductsOfDesks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Waiters">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductsOfDesks">
+        <PropertyRef Name="WaiterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AdditionDatabaseModelStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Desks" EntityType="Self.Desks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductsOfDesks" EntityType="Self.ProductsOfDesks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Waiters" EntityType="Self.Waiters" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Products_CategoryId" Association="Self.FK_Products_CategoryId">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsOfDesks_DeskId" Association="Self.FK_ProductsOfDesks_DeskId">
+      <End Role="Desks" EntitySet="Desks" />
+      <End Role="ProductsOfDesks" EntitySet="ProductsOfDesks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsOfDesks_ProductId" Association="Self.FK_ProductsOfDesks_ProductId">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductsOfDesks" EntitySet="ProductsOfDesks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsOfDesks_WaiterId" Association="Self.FK_ProductsOfDesks_WaiterId">
+      <End Role="Waiters" EntitySet="Waiters" />
+      <End Role="ProductsOfDesks" EntitySet="ProductsOfDesks" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

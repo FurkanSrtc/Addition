@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Service="_ServiceLayer.AdditionService" CodeBehind="~/App_Code/AdditionService.cs" %>

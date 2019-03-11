@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f47d0457-e18a-462d-8723-dedf2470f617" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:57450/AdditionService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AdditionService.xsd" MetadataType="Schema" ID="67d0d135-d8d6-485b-a887-bbf2c151fdc2" SourceId="1" SourceUrl="http://localhost:57450/AdditionService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AdditionService1.xsd" MetadataType="Schema" ID="6427a7e3-384b-4dc1-8f93-1a50121a3c7f" SourceId="1" SourceUrl="http://localhost:57450/AdditionService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AdditionService2.xsd" MetadataType="Schema" ID="5480e907-0d2b-454e-865e-413fec9c96dc" SourceId="1" SourceUrl="http://localhost:57450/AdditionService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AdditionService.disco" MetadataType="Disco" ID="117cda4b-e10a-463c-acf3-f24a7cb5578a" SourceId="1" SourceUrl="http://localhost:57450/AdditionService.svc?disco" />
+    <MetadataFile FileName="AdditionService.wsdl" MetadataType="Wsdl" ID="5159becb-adb9-4fd1-b981-d30fc05c4066" SourceId="1" SourceUrl="http://localhost:57450/AdditionService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
